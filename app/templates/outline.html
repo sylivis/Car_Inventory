@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- This is the outside of the website. (things that will be the same no matter what page you view) we will input content into the jinja -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<title>Inventory</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg py-3 fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand boxitem">Inventory</a>
+            <button 
+                class="navbar-toggler " 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navmenu"
+
+            ><div><span class="navbar-toggler-icon boxitem"></span></button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="">
+                        <a href="{{ url_for('site.home') }}" class="boxitem nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.profile') }}" class="boxitem nav-link">Profile</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.logout') }}" class="boxitem nav-link">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signin') }}" class="boxitem nav-link">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signup') }}" class="boxitem nav-link">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% block content %}
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"></script>
+</body>
+</html>
