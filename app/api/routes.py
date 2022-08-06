@@ -13,14 +13,14 @@ def getdata():
 @token_required
 def create_contact(current_user_token):
     make = request.json['make']
-    model = request.json['_model']
+    _model = request.json['_model']
     year = request.json['year']
     vin = request.json['vin']
     user_token = current_user_token.token
 
     print(f'BIG TESTER: {current_user_token.token}')
 
-    car = Car(make, model, year, vin, user_token = user_token )
+    car = Car(make, _model, year, vin, user_token = user_token )
 
     db.session.add(car)
     db.session.commit()
